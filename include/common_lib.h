@@ -16,14 +16,27 @@ which is included as part of this source code package.
 #include <utils/so3_math.h>
 #include <utils/types.h>
 #include <utils/color.h>
+#include "ros2_compat.h"
+#include <chrono>
 #include <opencv2/opencv.hpp>
-#include <sensor_msgs/Imu.h>
 #include <sophus/se3.h>
-#include <tf/transform_broadcaster.h>
 
 using namespace std;
 using namespace Eigen;
 using namespace Sophus;
+
+#ifdef _OPENMP
+#include <omp.h>
+#else
+inline double omp_get_wtime()
+{
+  using Clock = std::chrono::steady_clock;
+  static const Clock::time_point start = Clock::now();
+  return std::chrono::duration<double>(Clock::now() - start).count();
+}
+
+inline void omp_set_num_threads(int) {}
+#endif
 
 #define print_line std::cout << __FILE__ << ", " << __LINE__ << std::endl;
 #define G_m_s2 (9.81)   // Gravaty const in GuangDong/China
@@ -63,7 +76,7 @@ struct MeasureGroup
 {
   double vio_time;
   double lio_time;
-  deque<sensor_msgs::Imu::ConstPtr> imu;
+  deque<sensor_msgs::msg::Imu::ConstSharedPtr> imu;
   cv::Mat img;
   MeasureGroup()
   {
@@ -238,7 +251,7 @@ auto set_pose6d(const double t, const Matrix<T, 3, 1> &a, const Matrix<T, 3, 1> 
       rot_kp.rot[i * 3 + j] = R(i, j);
   }
   // Map<M3D>(rot_kp.rot, 3,3) = R;
-  return move(rot_kp);
+  return rot_kp;
 }
 
 #endif

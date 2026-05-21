@@ -27,7 +27,7 @@ ImuProcess::ImuProcess() : Eye3d(M3D::Identity()),
   acc_s_last = Zero3d;
   Lid_offset_to_IMU = Zero3d;
   Lid_rot_to_IMU = Eye3d;
-  last_imu.reset(new sensor_msgs::Imu());
+  last_imu = std::make_shared<sensor_msgs::msg::Imu>();
   cur_pcl_un_.reset(new PointCloudXYZI());
 }
 
@@ -42,7 +42,7 @@ void ImuProcess::Reset()
   imu_need_init = true;
   init_iter_num = 1;
   IMUpose.clear();
-  last_imu.reset(new sensor_msgs::Imu());
+  last_imu = std::make_shared<sensor_msgs::msg::Imu>();
   cur_pcl_un_.reset(new PointCloudXYZI());
 }
 
@@ -243,8 +243,8 @@ void ImuProcess::UndistortPcl(LidarMeasureGroup &lidar_meas, StatesGroup &state_
   // cout<<"meas.imu.size: "<<meas.imu.size()<<endl;
   auto v_imu = meas.imu;
   v_imu.push_front(last_imu);
-  const double &imu_beg_time = v_imu.front()->header.stamp.toSec();
-  const double &imu_end_time = v_imu.back()->header.stamp.toSec();
+  const double imu_beg_time = fast_livo::stampToSec(v_imu.front()->header.stamp);
+  const double imu_end_time = fast_livo::stampToSec(v_imu.back()->header.stamp);
   const double prop_beg_time = last_prop_end_time;
   // printf("[ IMU ] undistort input size: %zu \n", lidar_meas.pcl_proc_cur->points.size());
   // printf("[ IMU ] IMU data sequence size: %zu \n", meas.imu.size());
@@ -328,8 +328,10 @@ void ImuProcess::UndistortPcl(LidarMeasureGroup &lidar_meas, StatesGroup &state_
     {
       auto head = v_imu[i];
       auto tail = v_imu[i + 1];
+      const double head_time = fast_livo::stampToSec(head->header.stamp);
+      const double tail_time = fast_livo::stampToSec(tail->header.stamp);
 
-      if (tail->header.stamp.toSec() < prop_beg_time) continue;
+      if (tail_time < prop_beg_time) continue;
 
       angvel_avr << 0.5 * (head->angular_velocity.x + tail->angular_velocity.x), 0.5 * (head->angular_velocity.y + tail->angular_velocity.y),
           0.5 * (head->angular_velocity.z + tail->angular_velocity.z);
@@ -344,7 +346,7 @@ void ImuProcess::UndistortPcl(LidarMeasureGroup &lidar_meas, StatesGroup &state_
       // cout<<"acc_avr: "<<acc_avr.transpose()<<endl;
 
       // #ifdef DEBUG_PRINT
-      fout_imu << setw(10) << head->header.stamp.toSec() - first_lidar_time << " " << angvel_avr.transpose() << " " << acc_avr.transpose() << endl;
+      fout_imu << setw(10) << head_time - first_lidar_time << " " << angvel_avr.transpose() << " " << acc_avr.transpose() << endl;
       // #endif
 
       // imu_time = head->header.stamp.toSec() - first_lidar_time;
@@ -352,22 +354,22 @@ void ImuProcess::UndistortPcl(LidarMeasureGroup &lidar_meas, StatesGroup &state_
       angvel_avr -= state_inout.bias_g;
       acc_avr = acc_avr * G_m_s2 / mean_acc.norm() - state_inout.bias_a;
 
-      if (head->header.stamp.toSec() < prop_beg_time)
+      if (head_time < prop_beg_time)
       {
         // printf("00 \n");
-        dt = tail->header.stamp.toSec() - last_prop_end_time;
-        offs_t = tail->header.stamp.toSec() - prop_beg_time;
+        dt = tail_time - last_prop_end_time;
+        offs_t = tail_time - prop_beg_time;
       }
       else if (i != v_imu.size() - 2)
       {
         // printf("11 \n");
-        dt = tail->header.stamp.toSec() - head->header.stamp.toSec();
-        offs_t = tail->header.stamp.toSec() - prop_beg_time;
+        dt = tail_time - head_time;
+        offs_t = tail_time - prop_beg_time;
       }
       else
       {
         // printf("22 \n");
-        dt = prop_end_time - head->header.stamp.toSec();
+        dt = prop_end_time - head_time;
         offs_t = prop_end_time - prop_beg_time;
       }
 

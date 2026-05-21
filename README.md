@@ -1,4 +1,6 @@
-# FAST-LIVO2
+# FAST-LIVO2-ROS2
+
+A ROS2 version of FAST-LIVO2
 
 ## FAST-LIVO2: Fast, Direct LiDAR-Inertial-Visual Odometry
 
@@ -41,16 +43,16 @@ Our accompanying video is now available on [**Bilibili**](https://www.bilibili.c
 We open-source our handheld device, including CAD files, synchronization scheme, STM32 source code, wiring instructions, and sensor ROS driver. Access these resources at this repository: [**LIV_handhold**](https://github.com/xuankuzcr/LIV_handhold).
 
 ### 1.4 Our associate dataset: FAST-LIVO2-Dataset
-Our associate dataset [**FAST-LIVO2-Dataset**](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/zhengcr_connect_hku_hk/ErdFNQtjMxZOorYKDTtK4ugBkogXfq1OfDm90GECouuIQA?e=KngY9Z) used for evaluation is also available online.
+Our associate dataset used for evaluation is also available online. Download FAST-LIVO2-Dataset from [Global-LVBA](https://github.com/xuankuzcr/Global-LVBA) Section IV. 
 
 ### 1.5 Our LiDAR-camera calibration method
 The [**FAST-Calib**](https://github.com/hku-mars/FAST-Calib) toolkit is recommended. Its output extrinsic parameters can be directly filled into the YAML file. 
 
 ## 2. Prerequisited
 
-### 2.1 Ubuntu and ROS
+### 2.1 Ubuntu and ROS2
 
-Ubuntu 18.04~20.04.  [ROS Installation](http://wiki.ros.org/ROS/Installation).
+Ubuntu 20.04~24.04.  [ROS2 Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html).
 
 ### 2.2 PCL && Eigen && OpenCV
 
@@ -73,26 +75,28 @@ make
 sudo make install
 ```
 
-### 2.4 Vikit
+### 2.4 Vikit-ROS2
 
-Vikit contains camera models, some math and interpolation functions that we need. Vikit is a catkin project, therefore, download it into your catkin workspace source folder.
+Vikit contains camera models, some math and interpolation functions that we need. Vikit is a catkin project, therefore, download it into your colcon workspace source folder.
 
 ```bash
 # Different from the one used in fast-livo1
-cd catkin_ws/src
-git clone https://github.com/xuankuzcr/rpg_vikit.git 
+cd fastlivo2_ws/src
+git clone https://github.com/SupremeLyre/rpg_vikit-fastlivo2-ros2.git 
 ```
+
+### 2.5 livox-ros-driver-ros2-msg
 
 ## 3. Build
 
 Clone the repository and catkin_make:
 
 ```
-cd ~/catkin_ws/src
-git clone https://github.com/hku-mars/FAST-LIVO2
+cd ~/fastlivo2_ws/src
+git clone https://github.com/SupremeLyre/FAST-LIVO2-ROS2.git
 cd ../
-catkin_make
-source ~/catkin_ws/devel/setup.bash
+colcon build
+source ~/fastlivo2_ws/install/setup.bash
 ```
 
 ## 4. Run our examples
@@ -100,8 +104,8 @@ source ~/catkin_ws/devel/setup.bash
 Download FAST-LIVO2-Dataset from [Global-LVBA](https://github.com/xuankuzcr/Global-LVBA) Section IV.
 
 ```
-roslaunch fast_livo mapping_avia.launch
-rosbag play YOUR_DOWNLOADED.bag
+ros2 launch fast_livo mapping_avia.launch.py
+ros2 bag play YOUR_DOWNLOADED.bag
 ```
 
 

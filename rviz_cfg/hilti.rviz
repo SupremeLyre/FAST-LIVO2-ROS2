@@ -1,5 +1,5 @@
 Panels:
-  - Class: rviz/Displays
+  - Class: rviz_common/Displays
     Help Height: 0
     Name: Displays
     Property Tree Widget:
@@ -26,21 +26,21 @@ Panels:
         - /Image1
       Splitter Ratio: 0.34272301197052
     Tree Height: 538
-  - Class: rviz/Selection
+  - Class: rviz_common/Selection
     Name: Selection
-  - Class: rviz/Tool Properties
+  - Class: rviz_common/Tool Properties
     Expanded:
       - /2D Pose Estimate1
       - /2D Nav Goal1
       - /Publish Point1
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
-  - Class: rviz/Views
+  - Class: rviz_common/Views
     Expanded:
       - /Current View1
     Name: Views
     Splitter Ratio: 0.5
-  - Class: rviz/Time
+  - Class: rviz_common/Time
     Name: Time
     SyncMode: 0
     SyncSource: surround
@@ -53,7 +53,7 @@ Visualization Manager:
   Displays:
     - Alpha: 1
       Cell Size: 1
-      Class: rviz/Grid
+      Class: rviz_default_plugins/Grid
       Color: 160; 160; 164
       Enabled: false
       Line Style:
@@ -70,7 +70,7 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: false
     - Alpha: 1
-      Class: rviz/Axes
+      Class: rviz_default_plugins/Axes
       Enabled: true
       Length: 0.699999988079071
       Name: Axes
@@ -78,7 +78,7 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Show Trail: false
       Value: true
-    - Class: rviz/Group
+    - Class: rviz_common/Group
       Displays:
         - Alpha: 1
           Autocompute Intensity Bounds: true
@@ -88,7 +88,7 @@ Visualization Manager:
             Value: false
           Axis: Z
           Channel Name: intensity
-          Class: rviz/PointCloud2
+          Class: rviz_default_plugins/PointCloud2
           Color: 239; 41; 41
           Color Transformer: FlatColor
           Decay Time: 0
@@ -116,7 +116,7 @@ Visualization Manager:
             Value: false
           Axis: Z
           Channel Name: intensity
-          Class: rviz/PointCloud2
+          Class: rviz_default_plugins/PointCloud2
           Color: 238; 238; 236
           Color Transformer: RGB8
           Decay Time: 10000
@@ -146,7 +146,7 @@ Visualization Manager:
             Value: true
           Axis: Z
           Channel Name: intensity
-          Class: rviz/PointCloud2
+          Class: rviz_default_plugins/PointCloud2
           Color: 239; 41; 41
           Color Transformer: ""
           Decay Time: 0
@@ -168,10 +168,10 @@ Visualization Manager:
           Value: false
       Enabled: true
       Name: mapping
-    - Class: rviz/Group
+    - Class: rviz_common/Group
       Displays:
         - Angle Tolerance: 0.009999999776482582
-          Class: rviz/Odometry
+          Class: rviz_default_plugins/Odometry
           Covariance:
             Orientation:
               Alpha: 0.5
@@ -207,9 +207,9 @@ Visualization Manager:
           Value: true
       Enabled: true
       Name: Odometry
-    - Alpha: 0
+    - Alpha: 1
       Buffer Length: 2
-      Class: rviz/Path
+      Class: rviz_default_plugins/Path
       Color: 25; 255; 255
       Enabled: true
       Head Diameter: 0
@@ -239,7 +239,7 @@ Visualization Manager:
         Value: false
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 239; 41; 41
       Color Transformer: Intensity
       Decay Time: 1000
@@ -259,17 +259,17 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: false
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /planner_normal
-      Name: Marker
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: false
+      Topic: /planes
+      Name: Planes
       Namespaces:
         {}
       Queue Size: 100
-      Value: true
-    - Class: rviz/MarkerArray
+      Value: false
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: false
-      Marker Topic: /voxels
+      Topic: /voxels
       Name: MarkerArray
       Namespaces:
         {}
@@ -283,7 +283,7 @@ Visualization Manager:
         Value: true
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 245; 121; 0
       Color Transformer: FlatColor
       Decay Time: 0
@@ -303,9 +303,9 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: false
-    - Class: rviz/MarkerArray
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: false
-      Marker Topic: /visualization_marker
+      Topic: /visualization_marker
       Name: MarkerArray
       Namespaces:
         {}
@@ -319,7 +319,7 @@ Visualization Manager:
         Value: true
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 92; 53; 102
       Color Transformer: FlatColor
       Decay Time: 99999
@@ -347,7 +347,7 @@ Visualization Manager:
         Value: true
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 115; 210; 22
       Color Transformer: FlatColor
       Decay Time: 0
@@ -375,7 +375,7 @@ Visualization Manager:
         Value: false
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 237; 212; 0
       Color Transformer: FlatColor
       Decay Time: 0
@@ -403,7 +403,7 @@ Visualization Manager:
         Value: true
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 239; 41; 41
       Color Transformer: FlatColor
       Decay Time: 99999
@@ -431,7 +431,7 @@ Visualization Manager:
         Value: true
       Axis: Z
       Channel Name: intensity
-      Class: rviz/PointCloud2
+      Class: rviz_default_plugins/PointCloud2
       Color: 92; 53; 102
       Color Transformer: FlatColor
       Decay Time: 0
@@ -452,7 +452,7 @@ Visualization Manager:
       Use rainbow: true
       Value: false
     - Angle Tolerance: 0
-      Class: rviz/Odometry
+      Class: rviz_default_plugins/Odometry
       Covariance:
         Orientation:
           Alpha: 0.5
@@ -486,33 +486,33 @@ Visualization Manager:
       Topic: /aft_mapped_to_init
       Unreliable: false
       Value: false
-    - Class: rviz/MarkerArray
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: false
-      Marker Topic: /waypoint_planner/visualize
+      Topic: /waypoint_planner/visualize
       Name: MarkerArray
       Namespaces:
         {}
       Queue Size: 100
       Value: false
-    - Class: rviz/MarkerArray
-      Enabled: true
-      Marker Topic: /fsm_node/visualization/exp_traj
-      Name: MarkerArray
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: true
-    - Class: rviz/MarkerArray
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: false
-      Marker Topic: /fsm_node/visualization/exp_sfcs
+      Topic: /fsm_node/visualization/exp_traj
       Name: MarkerArray
       Namespaces:
         {}
       Queue Size: 100
       Value: false
-    - Class: rviz/Image
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: false
+      Topic: /fsm_node/visualization/exp_sfcs
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Class: rviz_default_plugins/Image
       Enabled: true
-      Image Topic: /rgb_img
+      Topic: /rgb_img
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -530,26 +530,26 @@ Visualization Manager:
     Frame Rate: 30
   Name: root
   Tools:
-    - Class: rviz/Interact
+    - Class: rviz_default_plugins/Interact
       Hide Inactive Objects: true
-    - Class: rviz/MoveCamera
-    - Class: rviz/Select
-    - Class: rviz/FocusCamera
-    - Class: rviz/Measure
-    - Class: rviz/SetInitialPose
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+    - Class: rviz_default_plugins/SetInitialPose
       Theta std deviation: 0.2617993950843811
       Topic: /initialpose
       X std deviation: 0.5
       Y std deviation: 0.5
-    - Class: rviz/SetGoal
+    - Class: rviz_default_plugins/SetGoal
       Topic: /move_base_simple/goal
-    - Class: rviz/PublishPoint
+    - Class: rviz_default_plugins/PublishPoint
       Single click: true
       Topic: /clicked_point
   Value: true
   Views:
     Current:
-      Class: rviz/ThirdPersonFollower
+      Class: rviz_default_plugins/ThirdPersonFollower
       Distance: 44.92388153076172
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -570,7 +570,7 @@ Visualization Manager:
       Target Frame: drone
       Yaw: 1.5631110668182373
     Saved:
-      - Class: rviz/Orbit
+      - Class: rviz_default_plugins/Orbit
         Distance: 117.53474426269531
         Enable Stereo Rendering:
           Stereo Eye Separation: 0.05999999865889549
@@ -590,7 +590,7 @@ Visualization Manager:
         Pitch: 0.19539840519428253
         Target Frame: <Fixed Frame>
         Yaw: 0.17540442943572998
-      - Class: rviz/Orbit
+      - Class: rviz_default_plugins/Orbit
         Distance: 109.3125
         Enable Stereo Rendering:
           Stereo Eye Separation: 0.05999999865889549
@@ -610,7 +610,7 @@ Visualization Manager:
         Pitch: 0.035398442298173904
         Target Frame: <Fixed Frame>
         Yaw: 5.793589115142822
-      - Class: rviz/Orbit
+      - Class: rviz_default_plugins/Orbit
         Distance: 85.65605163574219
         Enable Stereo Rendering:
           Stereo Eye Separation: 0.05999999865889549
@@ -630,7 +630,7 @@ Visualization Manager:
         Pitch: 0.5653983950614929
         Target Frame: <Fixed Frame>
         Yaw: 0.9104044437408447
-      - Class: rviz/Orbit
+      - Class: rviz_default_plugins/Orbit
         Distance: 60.1053581237793
         Enable Stereo Rendering:
           Stereo Eye Separation: 0.05999999865889549
