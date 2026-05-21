@@ -87,6 +87,11 @@ git clone https://github.com/SupremeLyre/rpg_vikit-fastlivo2-ros2.git
 
 ### 2.5 livox-ros-driver-ros2-msg
 
+```bash
+cd fastlivo2_ws/src
+git clone https://github.com/SupremeLyre/livox-ros-driver-ros2-msg.git
+```
+
 ## 3. Build
 
 Clone the repository and catkin_make:
@@ -103,9 +108,19 @@ source ~/fastlivo2_ws/install/setup.bash
 
 Download FAST-LIVO2-Dataset from [Global-LVBA](https://github.com/xuankuzcr/Global-LVBA) Section IV.
 
+ros1 bags can be converted to ros2 bags using rosbags.
+
+```bash
+pip install rosbags
+rosbags-convert --src Retail_Street.bag --dst Retail_Street
 ```
+A ros2 bag contains a yaml metadata and a data block named db3. So the converted ros2 bag will be put in a folder.
+
+Then you can run the examples.
+```
+source ~/fastlivo2_ws/install/setup.bash
 ros2 launch fast_livo mapping_avia.launch.py
-ros2 bag play YOUR_DOWNLOADED.bag
+ros2 bag play YOUR_DOWNLOADED_BAG
 ```
 
 
