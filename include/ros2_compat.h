@@ -18,6 +18,8 @@
 #include <livox_interfaces/msg/custom_point.hpp>
 #include <livox_ros_driver/msg/custom_msg.hpp>
 #include <livox_ros_driver/msg/custom_point.hpp>
+#include <livox_ros_driver2/msg/custom_msg.hpp>
+#include <livox_ros_driver2/msg/custom_point.hpp>
 #include <nav_msgs/msg/odometry.hpp>
 #include <nav_msgs/msg/path.hpp>
 #include <rclcpp/rclcpp.hpp>

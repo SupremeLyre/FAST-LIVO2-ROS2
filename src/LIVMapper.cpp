@@ -206,6 +206,12 @@ void LIVMapper::initializeSubscribersAndPublishers()
       sub_livox_pcl = node_->create_subscription<livox_interfaces::msg::CustomMsg>(
           lid_topic, rclcpp::SensorDataQoS().keep_last(200000), std::bind(&LIVMapper::livox_pcl_cbk, this, std::placeholders::_1));
     }
+    else if (livox_msg_type == "livox_ros_driver2" || livox_msg_type == "livox_ros_driver2/msg/CustomMsg")
+    {
+      RCLCPP_INFO(node_->get_logger(), "Subscribing %s as livox_ros_driver2/msg/CustomMsg", lid_topic.c_str());
+      sub_livox_driver2_pcl = node_->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+          lid_topic, rclcpp::SensorDataQoS().keep_last(200000), std::bind(&LIVMapper::livox_driver2_pcl_cbk, this, std::placeholders::_1));
+    }
     else
     {
       if (livox_msg_type != "livox_ros_driver" && livox_msg_type != "livox_ros_driver/msg/CustomMsg")
@@ -813,6 +819,11 @@ void LIVMapper::livox_pcl_cbk(const livox_interfaces::msg::CustomMsg::ConstShare
 void LIVMapper::legacy_livox_pcl_cbk(const livox_ros_driver::msg::CustomMsg::ConstSharedPtr &msg_in)
 {
   handleLivoxCustomMsg<livox_ros_driver::msg::CustomMsg>(msg_in);
+}
+
+void LIVMapper::livox_driver2_pcl_cbk(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr &msg_in)
+{
+  handleLivoxCustomMsg<livox_ros_driver2::msg::CustomMsg>(msg_in);
 }
 
 void LIVMapper::imu_cbk(const sensor_msgs::msg::Imu::ConstSharedPtr &msg_in)

@@ -63,6 +63,12 @@ void Preprocess::process(const livox_ros_driver::msg::CustomMsg::ConstSharedPtr 
   *pcl_out = pl_surf;
 }
 
+void Preprocess::process(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr &msg, PointCloudXYZI::Ptr &pcl_out)
+{
+  avia_handler(msg);
+  *pcl_out = pl_surf;
+}
+
 void Preprocess::process(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &msg, PointCloudXYZI::Ptr &pcl_out)
 {
   switch (lidar_type)
@@ -213,6 +219,11 @@ void Preprocess::avia_handler(const livox_interfaces::msg::CustomMsg::ConstShare
 }
 
 void Preprocess::avia_handler(const livox_ros_driver::msg::CustomMsg::ConstSharedPtr &msg)
+{
+  avia_handler_impl(msg);
+}
+
+void Preprocess::avia_handler(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr &msg)
 {
   avia_handler_impl(msg);
 }

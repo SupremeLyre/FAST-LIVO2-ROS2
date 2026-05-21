@@ -55,6 +55,7 @@ public:
   void standard_pcl_cbk(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &msg);
   void livox_pcl_cbk(const livox_interfaces::msg::CustomMsg::ConstSharedPtr &msg_in);
   void legacy_livox_pcl_cbk(const livox_ros_driver::msg::CustomMsg::ConstSharedPtr &msg_in);
+  void livox_driver2_pcl_cbk(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr &msg_in);
   void imu_cbk(const sensor_msgs::msg::Imu::ConstSharedPtr &msg_in);
   void img_cbk(const sensor_msgs::msg::Image::ConstSharedPtr &msg_in);
   void publish_img_rgb(const image_transport::Publisher &pubImage, VIOManagerPtr vio_manager);
@@ -178,6 +179,7 @@ public:
   rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr sub_standard_pcl;
   rclcpp::Subscription<livox_interfaces::msg::CustomMsg>::SharedPtr sub_livox_pcl;
   rclcpp::Subscription<livox_ros_driver::msg::CustomMsg>::SharedPtr sub_legacy_livox_pcl;
+  rclcpp::Subscription<livox_ros_driver2::msg::CustomMsg>::SharedPtr sub_livox_driver2_pcl;
   rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr sub_imu;
   rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr sub_img;
   PointCloud2Publisher pubLaserCloudFullRes;

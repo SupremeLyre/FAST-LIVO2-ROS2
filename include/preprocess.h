@@ -156,6 +156,7 @@ public:
 
   void process(const livox_interfaces::msg::CustomMsg::ConstSharedPtr &msg, PointCloudXYZI::Ptr &pcl_out);
   void process(const livox_ros_driver::msg::CustomMsg::ConstSharedPtr &msg, PointCloudXYZI::Ptr &pcl_out);
+  void process(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr &msg, PointCloudXYZI::Ptr &pcl_out);
   void process(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &msg, PointCloudXYZI::Ptr &pcl_out);
   void set(bool feat_en, int lid_type, double bld, int pfilt_num);
 
@@ -172,6 +173,7 @@ public:
 private:
   void avia_handler(const livox_interfaces::msg::CustomMsg::ConstSharedPtr &msg);
   void avia_handler(const livox_ros_driver::msg::CustomMsg::ConstSharedPtr &msg);
+  void avia_handler(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr &msg);
   template <typename LivoxMsgPtrT>
   void avia_handler_impl(const LivoxMsgPtrT &msg);
   void oust64_handler(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &msg);

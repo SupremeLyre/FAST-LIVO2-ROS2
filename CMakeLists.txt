@@ -62,6 +62,7 @@ find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(livox_interfaces REQUIRED)
 find_package(livox_ros_driver REQUIRED)
+find_package(livox_ros_driver2 REQUIRED)
 find_package(vikit_common REQUIRED)
 find_package(vikit_ros REQUIRED)
 
@@ -100,6 +101,7 @@ set(AMENT_DEPS
   image_transport
   livox_interfaces
   livox_ros_driver
+  livox_ros_driver2
   vikit_common
   vikit_ros
 )
